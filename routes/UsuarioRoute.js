@@ -1,8 +1,12 @@
 const express = require("express");
+
 const router = express.Router();
 
-const usuarioController = require("../controllers/UsuarioController");
-const autenticar = require("../src/middlewares/authMiddleware");
+const usuarioController =
+    require("../controllers/UsuarioController");
+
+const autenticar =
+    require("../src/middlewares/authMiddleware");
 
 router.post(
     "/usuarios",
@@ -13,6 +17,18 @@ router.get(
     "/usuarios",
     autenticar,
     usuarioController.consultarUsuarios
+);
+
+router.put(
+    "/usuarios/:id",
+    autenticar,
+    usuarioController.editarUsuario
+);
+
+router.delete(
+    "/usuarios/:id",
+    autenticar,
+    usuarioController.excluirUsuario
 );
 
 router.post(
